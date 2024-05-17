@@ -2,13 +2,13 @@
 const getStreamUrl = require("./index");
 
 // Video ID for testing
-const videoID = "NudUovOABjQ";
+const videoID = "c9Y1-pOph-o";
 
 // Main execution block
 (async () => {
     const file = await getStreamUrl(videoID);
     if (file) {
-      console.log("YouTube file found:", file);
+      console.log(file);
     } else {
       console.log("No YouTube files found.");
     }
