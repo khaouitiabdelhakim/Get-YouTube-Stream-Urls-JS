@@ -1,8 +1,8 @@
 // use.js
-const getStreamUrl = require("./index");
+const getStreamUrl = require("./axioso");
 
 // Video ID for testing
-const videoID = "mTZRQltuHRc";
+const videoID = "3TYwrnJCBdg";
 
 // Main execution block
 (async () => {
