@@ -4,7 +4,7 @@
  */
 
 // Set logging mode
-let LOGGING = false;
+let LOGGING = true;
 
 // Map of YouTube format codes to format details
 const FORMAT_MAP = {
@@ -125,6 +125,8 @@ async function exract(videoID) {
     }
 
     const signature = decipheredSignature;
+    console.log("signature: ",signature);
+
     if (!signature) {
       if (LOGGING) console.error("Could not decipher signature");
       return null;
@@ -174,6 +176,9 @@ function parseFormats(
           if (mat && matSig) {
             const url = decodeURIComponent(mat[1]);
             const signature = decodeURIComponent(matSig[1]);
+            console.log(`${url}&sig=${signature}`)
+            console.log("signature: ",signature);
+
             file.type = FORMAT_MAP[itag];
             file.url = url;
             if (LOGGING) console.log(`file: ${file.url}`);
@@ -370,7 +375,7 @@ async function getStreamUrl(videoID) {
       const file = await exract(videoID);
       if (file) {
         if (testHttp403Code(file.url)) {
-            if (LOGGING) console.log("file:", file);
+          if (LOGGING) console.log("file:", file);
           ok = true;
           return file;
         }
@@ -382,7 +387,15 @@ async function getStreamUrl(videoID) {
   } catch (error) {
     if (LOGGING) console.error("An error occurred:", error);
   }
-return null;
+  return null;
 }
 
 module.exports = getStreamUrl;
+
+const videoID = "JlyqnRaihSI";
+
+// Main execution block
+(async () => {
+  const file = await exract(videoID);
+  console.log(file);
+})();

@@ -122,10 +122,13 @@ async function getStreamUrls(videoID) {
       let i = 0;
       for (let key of encSignatures.keys()) {
         let url = file.url;
+        console.log(`url: ${url}`);
         url += `&sig=${sigs[i]}`;
         file.type = FORMAT_MAP[key];
         file.url = url;
+        console.log(`file: ${sigs[i]}`);
         i++;
+        c
       }
     }
   }
@@ -162,6 +165,7 @@ function parseFormats(
           if (mat && matSig) {
             const url = decodeURIComponent(mat[1]);
             const signature = decodeURIComponent(matSig[1]);
+            console.log(`sign: ${signature}`);
             file.type = FORMAT_MAP[itag];
             file.url = url;
             if(LOGGING) console.log(`file: ${file.url}`);
@@ -347,7 +351,7 @@ async function decipherSignature(encSignatures) {
   return true;
 }
 
-const videoID = "rMHx_iUAGd0";
+const videoID = "tZLDEUFtnX0";
 
 (async () => {
   let ok = false;

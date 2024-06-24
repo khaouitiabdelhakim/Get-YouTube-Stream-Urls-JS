@@ -4,7 +4,7 @@
  */
 
 // Set logging mode
-let LOGGING = false;
+let LOGGING = true;
 const axios = require("axios");
 // Map of YouTube format codes to format details
 const FORMAT_MAP = {
@@ -50,12 +50,11 @@ let decipherFunctionName = null;
 
 // User agent string for HTTP requests
 const USER_AGENT =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
 
-// Create an Axios instance with the User-Agent header
 const axiosInstance = axios.create({
   headers: {
-    "User-Agent": USER_AGENT,
+    "User-Agent": USER_AGENT
   },
 });
 
@@ -195,7 +194,7 @@ async function testHttp403Code(url) {
       return true;
     }
   } catch (error) {
-    if (LOGGING) console.error('An error occurred:', error);
+    if (LOGGING) console.error("An error occurred:", error);
   }
   return false;
 }
